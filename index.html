@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anvicon Infra Pvt Ltd | Engineering the Future</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Rajdhani:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <style>
+      /* --- 1. CSS Variables System (The Brain of Light/Dark Mode) --- */
+      :root {
+        /* Default: DARK MODE */
+        --bg-body: #0f172a;        /* Slate 900 */
+        --bg-surface: #1e293b;     /* Slate 800 */
+        --bg-card: rgba(30, 41, 59, 0.4);
+        --text-main: #f1f5f9;      /* Slate 100 */
+        --text-secondary: #94a3b8; /* Slate 400 */
+        --primary: #3b82f6;        /* Blue */
+        --accent: #06b6d4;         /* Cyan */
+        --border-color: rgba(255, 255, 255, 0.1);
+        --nav-bg: rgba(15, 23, 42, 0.85);
+        --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+        --glow-strength: 0 0 20px rgba(6, 182, 212, 0.3);
+      }
+
+      [data-theme="light"] {
+        /* LIGHT MODE OVERRIDES */
+        --bg-body: #f8fafc;        /* Slate 50 */
+        --bg-surface: #ffffff;     /* White */
+        --bg-card: rgba(255, 255, 255, 0.8);
+        --text-main: #0f172a;      /* Slate 900 */
+        --text-secondary: #475569; /* Slate 600 */
+        --primary: #2563eb;        /* Darker Blue */
+        --accent: #0891b2;         /* Darker Cyan */
+        --border-color: rgba(0, 0, 0, 0.1);
+        --nav-bg: rgba(255, 255, 255, 0.9);
+        --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --glow-strength: 0 5px 15px rgba(8, 145, 178, 0.2);
+      }
+
+      /* --- 2. Global Resets & Transitions --- */
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        overflow-x: hidden;
+        line-height: 1.6;
+        transition: background-color 0.4s ease, color 0.4s ease;
+      }
+
+      h1, h2, h3, h4, h5, .brand-font {
+        font-family: 'Rajdhani', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      a { text-decoration: none; }
+
+      /* Utility Classes for Text Colors that adapt */
+      .text-adaptive { color: var(--text-main) !important; }
+      .text-adaptive-muted { color: var(--text-secondary) !important; }
+
+      /* --- 3. Navigation --- */
+      .navbar {
+        background: var(--nav-bg);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-color);
+        padding: 15px 0;
+        transition: all 0.4s ease;
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        font-size: 1.8rem;
+        color: var(--text-main) !important;
+      }
+
+      .navbar-brand span { color: var(--accent); }
+
+      .nav-link {
+        color: var(--text-secondary) !important;
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-left: 15px;
+        position: relative;
+        transition: 0.3s;
+      }
+
+      .nav-link:hover { color: var(--primary) !important; }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--accent);
+        transition: width 0.3s;
+      }
+      .nav-link:hover::after { width: 100%; }
+
+      /* Theme Toggle Button */
+      .theme-switch {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        color: var(--text-main);
+        padding: 8px 12px;
+        border-radius: 50px;
+        cursor: pointer;
+        margin-left: 20px;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .theme-switch:hover {
+        background: var(--bg-surface);
+        border-color: var(--accent);
+      }
+
+      /* --- 4. Hero Section --- */
+      .hero-section {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        /* Adaptive Gradient overlay */
+        background: linear-gradient(180deg, var(--bg-body) 0%, rgba(15,23,42,0.4) 50%, var(--bg-body) 100%);
+        z-index: 1;
+      }
+
+      [data-theme="light"] .hero-overlay {
+        background: linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 50%, var(--bg-body) 100%);
+      }
+
+      .back-video {
+        position: absolute;
+        right: 0; bottom: 0;
+        min-width: 100%; min-height: 100%;
+        z-index: 0;
+        object-fit: cover;
+      }
+
+      .hero-content {
+        z-index: 2;
+        text-align: center;
+        max-width: 900px;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        padding: 5px 15px;
+        background: rgba(6, 182, 212, 0.15);
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
+        backdrop-filter: blur(5px);
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .hero-title {
+        font-size: 5rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 25px;
+        color: var(--text-main);
+        text-shadow: 0 0 30px rgba(0,0,0,0.5);
+      }
+
+      [data-theme="light"] .hero-title {
+        text-shadow: none;
+        color: #0f172a; /* Force dark in light mode for readability over video */
+      }
+
+      .hero-subtitle {
+        font-size: 1.25rem;
+        color: #e2e8f0; /* Always light text in hero because of video background */
+        margin-bottom: 40px;
+        font-weight: 400;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+      }
+
+      [data-theme="light"] .hero-subtitle {
+        color: #1e293b;
+        font-weight: 600;
+        text-shadow: 0 0 20px rgba(255,255,255,0.8);
+      }
+
+      .btn-glow {
+        padding: 15px 40px;
+        background: var(--primary);
+        color: white; /* Always white text on primary button */
+        border: none;
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy */
+        clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+      }
+
+      .btn-glow:hover {
+        background: var(--accent);
+        box-shadow: 0 0 30px var(--accent);
+        transform: scale(1.05) translateY(-3px);
+      }
+
+      /* --- 5. Animations --- */
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+
+      /* --- 6. Sections General --- */
+      .section-padding { padding: 100px 0; }
+      
+      .section-header h2 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--text-main);
+      }
+      .section-header .line {
+        width: 60px; height: 4px;
+        background: var(--accent);
+        margin-top: 15px;
+        transition: width 0.3s;
+      }
+      .section-header:hover .line { width: 100px; }
+
+      /* --- 7. Cards (Interactive) --- */
+      .stat-box {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-color);
+        padding: 20px;
+        text-align: center;
+        margin-top: 20px;
+        box-shadow: var(--shadow-card);
+        transition: 0.3s;
+      }
+      .stat-box:hover { transform: translateY(-5px); border-color: var(--primary); }
+      
+      .stat-number {
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      /* Vertical Cards */
+      .vertical-card {
+        height: 400px;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid var(--border-color);
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        cursor: pointer;
+        background: #000; /* Fallback */
+      }
+
+      .vertical-card img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s ease;
+        opacity: 0.8;
+      }
+
+      /* Overlay Gradient adapts to light mode to ensure text pop */
+      .vertical-overlay {
+        position: absolute; bottom: 0; left: 0;
+        width: 100%; height: 100%;
+        background: linear-gradient(0deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+        display: flex; flex-direction: column; justify-content: flex-end;
+        padding: 30px;
+        transition: 0.4s;
+      }
+
+      .vertical-card h3 {
+        font-size: 1.8rem;
+        color: white; /* Always white inside image card */
+        margin-bottom: 10px;
+        transform: translateY(20px);
+        transition: 0.4s;
+      }
+      .vertical-desc {
+        color: #cbd5e1; /* Always light grey inside image card */
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 0.4s;
+        font-size: 0.95rem;
+      }
+      .vertical-icon {
+        font-size: 2rem; color: var(--accent);
+        margin-bottom: 15px; transform: translateY(20px);
+        transition: 0.4s;
+      }
+
+      /* Hover Effects */
+      .vertical-card:hover {
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        border-color: var(--accent);
+      }
+      .vertical-card:hover img { transform: scale(1.1); opacity: 0.5; }
+      .vertical-card:hover .vertical-icon,
+      .vertical-card:hover h3,
+      .vertical-card:hover .vertical-desc {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* --- 8. USP Section --- */
+      .usp-section {
+        background: var(--bg-surface);
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .usp-grid-item {
+        padding: 50px 20px;
+        border-right: 1px solid var(--border-color);
+        transition: 0.3s;
+      }
+      .usp-grid-item:hover {
+        background: var(--bg-body);
+      }
+      .usp-grid-item i {
+        font-size: 2.5rem;
+        color: var(--text-secondary);
+        margin-bottom: 20px;
+        transition: 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+      .usp-grid-item:hover i {
+        color: var(--accent);
+        transform: scale(1.3) rotate(10deg);
+      }
+
+      /* --- 9. Leadership --- */
+      .leader-card {
+        border: 1px solid var(--border-color);
+        transition: 0.3s;
+        background: var(--bg-surface);
+        overflow: hidden;
+      }
+      .leader-img {
+        width: 100%; height: 320px;
+        object-fit: cover; object-position: top;
+        filter: grayscale(100%);
+        transition: 0.5s;
+      }
+      .leader-info {
+        padding: 25px;
+        border-top: 2px solid var(--primary);
+      }
+      .leader-card:hover {
+        transform: translateY(-15px);
+        box-shadow: var(--shadow-card);
+      }
+      .leader-card:hover .leader-img { filter: grayscale(0%); }
+
+      /* --- 10. Footer --- */
+      footer {
+        background: var(--bg-surface);
+        padding: 80px 0 30px;
+        border-top: 1px solid var(--border-color);
+        font-size: 0.9rem;
+      }
+      .footer-links a {
+        color: var(--text-secondary);
+        display: block; margin-bottom: 10px;
+        transition: 0.3s;
+      }
+      .footer-links a:hover {
+        color: var(--accent);
+        padding-left: 8px;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero-title { font-size: 3rem; }
+        .usp-grid-item { border-right: none; border-bottom: 1px solid var(--border-color); }
+      }
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand brand-font" href="#">
+           <i class="fa-solid fa-layer-group me-2" style="color: var(--primary);"></i>
+           Anvicon<span>Infra</span>
+        </a>
+        
+        <div class="d-flex align-items-center">
+             <button class="navbar-toggler bg-secondary me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav align-items-center">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">Company</a></li>
+            <li class="nav-item"><a class="nav-link" href="#verticals">Expertise</a></li>
+            <li class="nav-item"><a class="nav-link" href="#leadership">Leadership</a></li>
+            
+            <li class="nav-item">
+                <button class="theme-switch" id="theme-toggle" title="Switch Theme">
+                    <i class="fa-solid fa-moon" id="theme-icon"></i>
+                    <span class="d-lg-none">Switch Mode</span>
+                </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="hero-section" id="home">
+      <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070" class="back-video" style="z-index: -2;" alt="Construction">
+      
+      <video autoplay loop muted playsinline class="back-video">
+        <source src="./media/Power and Beauty of Construction Sites A Cinematic Reel_720p.mp4" type="video/mp4" />
+      </video>
+      
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content container reveal-up">
+        <div class="hero-badge">EST. 2025</div>
+        <h1 class="hero-title">ENGINEERING <br> THE FUTURE</h1>
+        <p class="hero-subtitle">
+            Rigorous engineering meets sustainable innovation.
+        </p>
+        <a href="#verticals" class="btn-glow">VIEW PROJECTS</a>
+      </div>
+    </div>
+
+    <section class="section-padding" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0 reveal-left">
+                    <div class="section-header">
+                        <h4 style="color: var(--primary);" class="mb-2 brand-font">Our Origins</h4>
+                        <h2 class="text-adaptive">Legacy of Excellence</h2>
+                        <div class="line"></div>
+                    </div>
+                    <p class="text-adaptive-muted lead mb-4">
+                        Formalized in 2025, Anvicon Infra Pvt Ltd builds upon the robust foundation of <strong>Anvikshiki Constructions</strong>.
+                    </p>
+                    <p class="text-adaptive-muted">
+                        We don't just build structures; we engineer environments. From complex logistics hubs to high-rise residential towers, our approach combines data-driven project management with on-ground technical expertise.
+                    </p>
+                    
+                    <div class="row mt-5">
+                        <div class="col-6">
+                            <div class="stat-box">
+                                <div class="stat-number">3+</div>
+                                <div class="small text-adaptive-muted text-uppercase">Major Industrial Hubs</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-box">
+                                <div class="stat-number">100%</div>
+                                <div class="small text-adaptive-muted text-uppercase">Safety Record</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5 offset-lg-1 reveal-right">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070" style="width: 100%; border-radius: 8px; filter: contrast(1.1);" alt="Engineering">
+                        <div class="p-4 position-absolute bottom-0 start-0 w-100" style="background: rgba(0,0,0,0.8); border-left: 4px solid var(--accent);">
+                             <p class="mb-0 text-white fst-italic">"Trusted partner for Welspun One across Karnataka."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="verticals" style="background-color: var(--bg-body);">
+        <div class="container">
+            <div class="section-header text-center reveal-up">
+                <h4 style="color: var(--accent);" class="brand-font">Capabilities</h4>
+                <h2 class="text-adaptive">Core Sectors</h2>
+                <div class="line mx-auto"></div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4 reveal-up" style="transition-delay: 100ms;">
+                    <div class="vertical-card">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070" alt="Logistics">
+                        <div class="vertical-overlay">
+                            <i class="fa-solid fa-warehouse vertical-icon"></i>
+                            <h3>Logistic Parks</h3>
+                            <p class="vertical-desc">High-capacity warehousing and supply chain infrastructure.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 reveal-up" style="transition-delay: 200ms;">
+                    <div class="vertical-card">
+                        <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?q=80&w=2070" alt="Industrial">
+                        <div class="vertical-overlay">
+                            <i class="fa-solid fa-industry vertical-icon"></i>
+                            <h3>Industrial</h3>
+                            <p class="vertical-desc">State-of-the-art factories and commercial production hubs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 reveal-up" style="transition-delay: 300ms;">
+                    <div class="vertical-card">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070" alt="Residential">
+                        <div class="vertical-overlay">
+                            <i class="fa-solid fa-city vertical-icon"></i>
+                            <h3>Residential</h3>
+                            <p class="vertical-desc">Premium living spaces prioritizing structural integrity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding usp-section" id="usp">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-md-3 usp-grid-item text-center reveal-left">
+                    <i class="fa-regular fa-clock"></i>
+                    <h5 class="text-adaptive mt-3">On-Time Delivery</h5>
+                    <p class="text-adaptive-muted small mb-0">Precision scheduling.</p>
+                </div>
+                <div class="col-md-3 usp-grid-item text-center reveal-left" style="transition-delay: 100ms;">
+                    <i class="fa-solid fa-leaf"></i>
+                    <h5 class="text-adaptive mt-3">Sustainability</h5>
+                    <p class="text-adaptive-muted small mb-0">Eco-conscious methods.</p>
+                </div>
+                <div class="col-md-3 usp-grid-item text-center reveal-left" style="transition-delay: 200ms;">
+                    <i class="fa-solid fa-microchip"></i>
+                    <h5 class="text-adaptive mt-3">Technology</h5>
+                    <p class="text-adaptive-muted small mb-0">BIM & Drone Surveying.</p>
+                </div>
+                <div class="col-md-3 usp-grid-item text-center reveal-left" style="transition-delay: 300ms; border-right: none;">
+                    <i class="fa-solid fa-coins"></i>
+                    <h5 class="text-adaptive mt-3">Cost Efficiency</h5>
+                    <p class="text-adaptive-muted small mb-0">Lean construction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="leadership">
+        <div class="container">
+            <div class="section-header mb-5 reveal-up">
+                <h4 style="color: var(--primary);" class="brand-font">Management</h4>
+                <h2 class="text-adaptive">Leadership</h2>
+                <div class="line"></div>
+            </div>
+
+            <div class="row justify-content-center g-4">
+                <div class="col-md-5 reveal-up">
+                    <div class="leader-card">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974" class="leader-img" alt="Director">
+                        <div class="leader-info">
+                            <h3 class="text-adaptive mb-1">Abhilash Chiranjeevi</h3>
+                            <p style="color: var(--accent);" class="small text-uppercase fw-bold mb-3">Director</p>
+                            <p class="text-adaptive-muted small">Civil Eng. | M. Tech (Structures)</p>
+                            <p class="text-adaptive-muted small">Specialist in structural dynamics and large-scale execution.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 reveal-up" style="transition-delay: 200ms;">
+                    <div class="leader-card">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974" class="leader-img" alt="Director">
+                        <div class="leader-info">
+                            <h3 class="text-adaptive mb-1">P. Rajesh Kumar</h3>
+                            <p style="color: var(--accent);" class="small text-uppercase fw-bold mb-3">Director</p>
+                            <p class="text-adaptive-muted small">ECE | Masters (Power Systems)</p>
+                            <p class="text-adaptive-muted small">Expert in infrastructure contracts and project lifecycle management.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <a href="#" class="navbar-brand mb-3 d-block">Anvicon<span>Infra</span></a>
+                    <p class="text-adaptive-muted">
+                        Building the future with precision, integrity, and innovation. 
+                    </p>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-6 mb-4">
+                    <h5 class="text-adaptive mb-3 brand-font">Company</h5>
+                    <div class="footer-links">
+                        <a href="#about">About Us</a>
+                        <a href="#leadership">Team</a>
+                        <a href="#usp">Values</a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h5 class="text-adaptive mb-3 brand-font">Verticals</h5>
+                    <div class="footer-links">
+                        <a href="#">Logistics</a>
+                        <a href="#">Industrial</a>
+                        <a href="#">Residential</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5 class="text-adaptive mb-3 brand-font">Contact</h5>
+                    <p class="text-adaptive-muted small mb-2"><i class="fa-solid fa-location-dot me-2"></i> Hyderabad, India</p>
+                    <p class="text-adaptive-muted small mb-2"><i class="fa-solid fa-envelope me-2"></i> contact@anvicon.com</p>
+                </div>
+            </div>
+            <div class="text-center text-adaptive-muted small mt-4">
+                &copy; 2025 Anvicon Infra Pvt Ltd. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+      // 1. SCROLL REVEAL ANIMATIONS
+      ScrollReveal({
+        reset: false,
+        distance: "40px",
+        duration: 1000,
+        delay: 200,
+        easing: 'cubic-bezier(0.25, 1, 0.5, 1)'
+      });
+      ScrollReveal().reveal(".reveal-up", { origin: "bottom", interval: 100 });
+      ScrollReveal().reveal(".reveal-left", { origin: "left", interval: 100 });
+      ScrollReveal().reveal(".reveal-right", { origin: "right", interval: 100 });
+
+      // 2. THEME SWITCHER LOGIC
+      const toggleBtn = document.getElementById('theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      const htmlEl = document.documentElement;
+
+      // Check Local Storage
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      htmlEl.setAttribute('data-theme', savedTheme);
+      updateIcon(savedTheme);
+
+      toggleBtn.addEventListener('click', () => {
+        const currentTheme = htmlEl.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        htmlEl.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateIcon(newTheme);
+      });
+
+      function updateIcon(theme) {
+        if(theme === 'light') {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+      }
+
+      // 3. NAVBAR SCROLL EFFECT
+      window.addEventListener('scroll', function() {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+            nav.style.padding = '10px 0';
+        } else {
+            nav.style.padding = '15px 0';
+        }
+      });
+    </script>
+    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    ></script>
+  </body>
+</html>
