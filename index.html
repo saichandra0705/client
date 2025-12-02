@@ -28,13 +28,13 @@
       /* --- 1. CSS Variables System (The Brain of Light/Dark Mode) --- */
       :root {
         /* Default: DARK MODE */
-        --bg-body: #0f172a;        /* Slate 900 */
-        --bg-surface: #1e293b;     /* Slate 800 */
+        --bg-body: #0f172a; /* Slate 900 */
+        --bg-surface: #1e293b; /* Slate 800 */
         --bg-card: rgba(30, 41, 59, 0.4);
-        --text-main: #f1f5f9;      /* Slate 100 */
+        --text-main: #f1f5f9; /* Slate 100 */
         --text-secondary: #94a3b8; /* Slate 400 */
-        --primary: #3b82f6;        /* Blue */
-        --accent: #06b6d4;         /* Cyan */
+        --primary: #3b82f6; /* Blue */
+        --accent: #06b6d4; /* Cyan */
         --border-color: rgba(255, 255, 255, 0.1);
         --nav-bg: rgba(15, 23, 42, 0.85);
         --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -43,13 +43,13 @@
 
       [data-theme="light"] {
         /* LIGHT MODE OVERRIDES */
-        --bg-body: #f8fafc;        /* Slate 50 */
-        --bg-surface: #ffffff;     /* White */
+        --bg-body: #f8fafc; /* Slate 50 */
+        --bg-surface: #ffffff; /* White */
         --bg-card: rgba(255, 255, 255, 0.8);
-        --text-main: #0f172a;      /* Slate 900 */
+        --text-main: #0f172a; /* Slate 900 */
         --text-secondary: #475569; /* Slate 600 */
-        --primary: #2563eb;        /* Darker Blue */
-        --accent: #0891b2;         /* Darker Cyan */
+        --primary: #2563eb; /* Darker Blue */
+        --accent: #0891b2; /* Darker Cyan */
         --border-color: rgba(0, 0, 0, 0.1);
         --nav-bg: rgba(255, 255, 255, 0.9);
         --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -174,20 +174,6 @@
         max-width: 900px;
       }
 
-      .hero-badge {
-        display: inline-block;
-        padding: 5px 15px;
-        background: rgba(6, 182, 212, 0.15);
-        border: 1px solid var(--accent);
-        color: var(--accent);
-        font-size: 0.8rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-        letter-spacing: 2px;
-        backdrop-filter: blur(5px);
-        animation: float 3s ease-in-out infinite;
-      }
-
       .hero-title {
         font-size: 5rem;
         font-weight: 800;
@@ -225,8 +211,8 @@
         font-weight: 700;
         font-size: 1.1rem;
         letter-spacing: 1px;
+        border-radius: 50px; /* Fully rounded */
         transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy */
-        clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
       }
 
       .btn-glow:hover {
@@ -254,6 +240,7 @@
         background: var(--accent);
         margin-top: 15px;
         transition: width 0.3s;
+        border-radius: 4px;
       }
       .section-header:hover .line { width: 100px; }
 
@@ -266,6 +253,7 @@
         margin-top: 20px;
         box-shadow: var(--shadow-card);
         transition: 0.3s;
+        border-radius: 15px; /* Smooth Edges */
       }
       .stat-box:hover { transform: translateY(-5px); border-color: var(--primary); }
       
@@ -279,7 +267,7 @@
       /* Vertical Cards */
       .vertical-card {
         height: 400px;
-        border-radius: 8px;
+        border-radius: 15px; /* Smooth Edges */
         overflow: hidden;
         position: relative;
         border: 1px solid var(--border-color);
@@ -317,7 +305,6 @@
         opacity: 0;
         transform: translateY(20px);
         transition: 0.4s;
-        font-size: 0.95rem;
       }
       .vertical-icon {
         font-size: 2rem; color: var(--accent);
@@ -339,54 +326,149 @@
       }
 
       /* --- 8. USP Section --- */
-      .usp-section {
-        background: var(--bg-surface);
-        border-top: 1px solid var(--border-color);
-        border-bottom: 1px solid var(--border-color);
+      #unique-proposition {
+        background-color: var(--bg-surface);
       }
-      .usp-grid-item {
-        padding: 50px 20px;
-        border-right: 1px solid var(--border-color);
+      .usp-box {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        padding: 30px;
+        border-radius: 15px; /* Smooth Edges */
+        height: 100%;
         transition: 0.3s;
+        backdrop-filter: blur(5px);
       }
-      .usp-grid-item:hover {
-        background: var(--bg-body);
+      .usp-box:hover {
+          border-color: var(--primary);
+          box-shadow: var(--glow-strength);
+          transform: translateY(-5px);
       }
-      .usp-grid-item i {
-        font-size: 2.5rem;
-        color: var(--text-secondary);
-        margin-bottom: 20px;
-        transition: 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-      }
-      .usp-grid-item:hover i {
+      .usp-icon {
+        font-size: 3rem;
         color: var(--accent);
-        transform: scale(1.3) rotate(10deg);
+        margin-bottom: 15px;
+        line-height: 1;
+      }
+      .usp-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+      .usp-line {
+        width: 40px; height: 3px; background: var(--accent); margin-bottom: 15px;
       }
 
-      /* --- 9. Leadership --- */
+
+      /* --- 9. Vision/Mission Section --- */
+      .vision-card {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-color);
+        padding: 30px;
+        border-radius: 15px; /* Smooth Edges */
+        margin-top: 30px;
+        transition: 0.3s;
+      }
+      .mission-list li {
+        margin-bottom: 10px;
+        color: var(--text-secondary);
+      }
+      .mission-list i {
+        color: var(--accent);
+        margin-right: 10px;
+      }
+
+      /* --- 10. Leadership --- */
       .leader-card {
         border: 1px solid var(--border-color);
         transition: 0.3s;
         background: var(--bg-surface);
         overflow: hidden;
+        margin-top: 20px;
+        border-radius: 15px; /* Smooth Edges */
       }
       .leader-img {
-        width: 100%; height: 320px;
-        object-fit: cover; object-position: top;
+        width: 100%; height: 280px; /* Slightly smaller height */
+        object-fit: cover; object-position: center;
         filter: grayscale(100%);
         transition: 0.5s;
+        opacity: 0.8;
       }
       .leader-info {
         padding: 25px;
         border-top: 2px solid var(--primary);
       }
       .leader-card:hover {
-        transform: translateY(-15px);
+        transform: translateY(-10px); /* Less aggressive pop-up */
         box-shadow: var(--shadow-card);
       }
-      .leader-card:hover .leader-img { filter: grayscale(0%); }
+      .leader-card:hover .leader-img { filter: grayscale(0%); opacity: 1; }
 
-      /* --- 10. Footer --- */
+      /* --- 11. Project Experience --- */
+      .project-stats-section {
+          background-color: var(--bg-surface);
+          border-top: 1px solid var(--border-color);
+      }
+
+      /* --- Image Composition Classes (UPDATED FIX) --- */
+      .image-stack {
+          position: relative;
+          margin-top: 20px;
+          margin-bottom: 40px; /* Space for overhang */
+      }
+      
+      .image-stack-bottom {
+          width: 100%;
+          border-radius: 15px;
+          filter: contrast(1.1);
+          position: relative;
+          z-index: 1;
+      }
+
+      /* Wrapper for the floating top image + text */
+      .image-stack-top-wrapper {
+          position: absolute;
+          bottom: -30px;
+          left: -30px;
+          width: 65%;
+          z-index: 2;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+          border-radius: 15px;
+          overflow: hidden;
+          border: 5px solid var(--bg-surface);
+      }
+
+      .image-stack-top-wrapper img {
+          width: 100%;
+          height: auto;
+          display: block;
+          object-fit: cover;
+      }
+      
+      .stack-caption {
+          background: rgba(15, 23, 42, 0.9);
+          backdrop-filter: blur(5px);
+          padding: 15px;
+          border-left: 4px solid var(--accent);
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+      }
+      
+      /* Mobile fix */
+      @media (max-width: 768px) {
+        .image-stack-top-wrapper { 
+            position: relative; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            margin-top: -20px;
+            border: none;
+        }
+      }
+
+      /* --- 12. Footer --- */
       footer {
         background: var(--bg-surface);
         padding: 80px 0 30px;
@@ -406,7 +488,6 @@
       /* Responsive */
       @media (max-width: 768px) {
         .hero-title { font-size: 3rem; }
-        .usp-grid-item { border-right: none; border-bottom: 1px solid var(--border-color); }
       }
     </style>
   </head>
@@ -430,7 +511,8 @@
             <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="#about">Company</a></li>
             <li class="nav-item"><a class="nav-link" href="#verticals">Expertise</a></li>
-            <li class="nav-item"><a class="nav-link" href="#leadership">Leadership</a></li>
+            <li class="nav-item"><a class="nav-link" href="#proposition">Proposition</a></li>
+            <li class="nav-item"><a class="nav-link" href="#leadership">Team</a></li>
             
             <li class="nav-item">
                 <button class="theme-switch" id="theme-toggle" title="Switch Theme">
@@ -444,7 +526,7 @@
     </nav>
 
     <div class="hero-section" id="home">
-      <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070" class="back-video" style="z-index: -2;" alt="Construction">
+      <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070" class="back-video" style="z-index: -2;" alt="Construction Site">
       
       <video autoplay loop muted playsinline class="back-video">
         <source src="./media/Power and Beauty of Construction Sites A Cinematic Reel_720p.mp4" type="video/mp4" />
@@ -453,29 +535,62 @@
       <div class="hero-overlay"></div>
 
       <div class="hero-content container reveal-up">
-        <div class="hero-badge">EST. 2025</div>
         <h1 class="hero-title">ENGINEERING <br> THE FUTURE</h1>
         <p class="hero-subtitle">
             Rigorous engineering meets sustainable innovation.
         </p>
-        <a href="#verticals" class="btn-glow">VIEW PROJECTS</a>
+        <a href="#verticals" class="btn-glow">VIEW EXPERTISE</a>
       </div>
     </div>
 
-    <section class="section-padding" id="about">
+    <section class="section-padding" id="vmv">
+        <div class="container">
+            <div class="section-header text-center mb-5 reveal-up">
+                <h4 style="color: var(--primary);" class="mb-2 brand-font">Principles</h4>
+                <h2 class="text-adaptive">Vision & Mission</h2>
+                <div class="line mx-auto"></div>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-5 reveal-left">
+                    <div class="vision-card h-100">
+                        <h3 class="text-adaptive brand-font" style="color: var(--accent);">Our Vision</h3>
+                        <div class="usp-line mb-4"></div>
+                        <p class="text-adaptive-muted">
+                            To emerge as a **trusted and innovative infrastructure company** known for engineering excellence, sustainable practices, and timely delivery, setting new benchmarks for quality and reliability in the construction industry.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-7 reveal-right">
+                    <div class="vision-card h-100">
+                        <h3 class="text-adaptive brand-font" style="color: var(--primary);">Our Mission</h3>
+                        <div class="usp-line mb-4" style="background-color: var(--primary);"></div>
+                        <ul class="list-unstyled mission-list">
+                            <li><i class="fa-solid fa-square-check"></i> To deliver high-quality projects with **engineering precision** and professionalism.</li>
+                            <li><i class="fa-solid fa-square-check"></i> To proactively adopt **modern engineering technologies** and sustainable construction methods.</li>
+                            <li><i class="fa-solid fa-square-check"></i> To build long-term relationships through **transparency and commitment**.</li>
+                            <li><i class="fa-solid fa-square-check"></i> To provide safe, efficient, and **cost-efficient solutions** that benefit our clients and communities.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="about" style="background-color: var(--bg-surface);">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-5 mb-lg-0 reveal-left">
                     <div class="section-header">
-                        <h4 style="color: var(--primary);" class="mb-2 brand-font">Our Origins</h4>
+                        <h4 style="color: var(--primary);" class="mb-2 brand-font">Company Overview</h4>
                         <h2 class="text-adaptive">Legacy of Excellence</h2>
                         <div class="line"></div>
                     </div>
                     <p class="text-adaptive-muted lead mb-4">
-                        Formalized in 2025, Anvicon Infra Pvt Ltd builds upon the robust foundation of <strong>Anvikshiki Constructions</strong>.
+                        Anvicon Infra Pvt Ltd is a premier infrastructure and construction company built upon the robust foundation of **Anvikshiki Constructions**.
                     </p>
                     <p class="text-adaptive-muted">
-                        We don't just build structures; we engineer environments. From complex logistics hubs to high-rise residential towers, our approach combines data-driven project management with on-ground technical expertise.
+                        We specialize in the end-to-end development of essential structures, engineering environments from complex logistics hubs to high-rise residential towers. Our approach combines data-driven project management with unparalleled on-ground technical expertise.
                     </p>
                     
                     <div class="row mt-5">
@@ -495,10 +610,15 @@
                 </div>
                 
                 <div class="col-lg-5 offset-lg-1 reveal-right">
-                    <div class="position-relative">
-                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070" style="width: 100%; border-radius: 8px; filter: contrast(1.1);" alt="Engineering">
-                        <div class="p-4 position-absolute bottom-0 start-0 w-100" style="background: rgba(0,0,0,0.8); border-left: 4px solid var(--accent);">
-                             <p class="mb-0 text-white fst-italic">"Trusted partner for Welspun One across Karnataka."</p>
+                    <div class="image-stack">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070" class="image-stack-bottom" alt="Engineering Plans">
+                        
+                        <div class="image-stack-top-wrapper">
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1000" alt="Engineer on Site">
+                            
+                            <div class="stack-caption">
+                                <p class="mb-0 text-white fst-italic small">"Trusted partner for Welspun One across Karnataka."</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -506,7 +626,7 @@
         </div>
     </section>
 
-    <section class="section-padding" id="verticals" style="background-color: var(--bg-body);">
+    <section class="section-padding" id="verticals">
         <div class="container">
             <div class="section-header text-center reveal-up">
                 <h4 style="color: var(--accent);" class="brand-font">Capabilities</h4>
@@ -521,7 +641,7 @@
                         <div class="vertical-overlay">
                             <i class="fa-solid fa-warehouse vertical-icon"></i>
                             <h3>Logistic Parks</h3>
-                            <p class="vertical-desc">High-capacity warehousing and supply chain infrastructure.</p>
+                            <p class="vertical-desc">Creating robust, modern facilities optimized for efficient supply chain and warehousing operations.</p>
                         </div>
                     </div>
                 </div>
@@ -531,8 +651,8 @@
                         <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?q=80&w=2070" alt="Industrial">
                         <div class="vertical-overlay">
                             <i class="fa-solid fa-industry vertical-icon"></i>
-                            <h3>Industrial</h3>
-                            <p class="vertical-desc">State-of-the-art factories and commercial production hubs.</p>
+                            <h3>Industrial & Commercial</h3>
+                            <p class="vertical-desc">Constructing state-of-the-art factories, office spaces, and commercial production hubs.</p>
                         </div>
                     </div>
                 </div>
@@ -543,7 +663,7 @@
                         <div class="vertical-overlay">
                             <i class="fa-solid fa-city vertical-icon"></i>
                             <h3>Residential</h3>
-                            <p class="vertical-desc">Premium living spaces prioritizing structural integrity.</p>
+                            <p class="vertical-desc">Developing high-quality housing solutions prioritizing modern living, safety, and community well-being.</p>
                         </div>
                     </div>
                 </div>
@@ -551,28 +671,106 @@
         </div>
     </section>
 
-    <section class="section-padding usp-section" id="usp">
+    <section class="section-padding" id="proposition">
         <div class="container">
-            <div class="row g-0">
-                <div class="col-md-3 usp-grid-item text-center reveal-left">
-                    <i class="fa-regular fa-clock"></i>
-                    <h5 class="text-adaptive mt-3">On-Time Delivery</h5>
-                    <p class="text-adaptive-muted small mb-0">Precision scheduling.</p>
+            <div class="section-header text-center mb-5 reveal-up">
+                <h4 style="color: var(--primary);" class="brand-font">Differentiators</h4>
+                <h2 class="text-adaptive">Our Unique Proposition</h2>
+                <div class="line mx-auto"></div>
+                <p class="text-adaptive-muted mt-3 mb-0">
+                    What sets Anvicon Infra apart is our unwavering commitment to client success, built on four foundational pillars that define our operational standard.
+                </p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 reveal-up" style="transition-delay: 100ms;">
+                    <div class="usp-box">
+                        <div class="usp-icon"><i class="fa-regular fa-clock"></i></div>
+                        <h4 class="usp-title brand-font">Guaranteed On-Time Delivery</h4>
+                        <p class="text-adaptive-muted small">
+                            Leveraging meticulous planning and execution to ensure projects are consistently completed within agreed-upon deadlines.
+                        </p>
+                    </div>
                 </div>
-                <div class="col-md-3 usp-grid-item text-center reveal-left" style="transition-delay: 100ms;">
-                    <i class="fa-solid fa-leaf"></i>
-                    <h5 class="text-adaptive mt-3">Sustainability</h5>
-                    <p class="text-adaptive-muted small mb-0">Eco-conscious methods.</p>
+                <div class="col-lg-3 col-md-6 reveal-up" style="transition-delay: 200ms;">
+                    <div class="usp-box">
+                        <div class="usp-icon"><i class="fa-solid fa-leaf"></i></div>
+                        <h4 class="usp-title brand-font">Sustainable Practices</h4>
+                        <p class="text-adaptive-muted small">
+                            Integrating eco-friendly methods and materials to minimize environmental impact and create energy-efficient, future-proof structures.
+                        </p>
+                    </div>
                 </div>
-                <div class="col-md-3 usp-grid-item text-center reveal-left" style="transition-delay: 200ms;">
-                    <i class="fa-solid fa-microchip"></i>
-                    <h5 class="text-adaptive mt-3">Technology</h5>
-                    <p class="text-adaptive-muted small mb-0">BIM & Drone Surveying.</p>
+                <div class="col-lg-3 col-md-6 reveal-up" style="transition-delay: 300ms;">
+                    <div class="usp-box">
+                        <div class="usp-icon"><i class="fa-solid fa-microchip"></i></div>
+                        <h4 class="usp-title brand-font">New Technology Adoption</h4>
+                        <p class="text-adaptive-muted small">
+                            Utilizing cutting-edge construction technology (e.g., BIM, drone surveying) for enhanced precision, safety, and operational efficiency.
+                        </p>
+                    </div>
                 </div>
-                <div class="col-md-3 usp-grid-item text-center reveal-left" style="transition-delay: 300ms; border-right: none;">
-                    <i class="fa-solid fa-coins"></i>
-                    <h5 class="text-adaptive mt-3">Cost Efficiency</h5>
-                    <p class="text-adaptive-muted small mb-0">Lean construction.</p>
+                <div class="col-lg-3 col-md-6 reveal-up" style="transition-delay: 400ms;">
+                    <div class="usp-box">
+                        <div class="usp-icon"><i class="fa-solid fa-coins"></i></div>
+                        <h4 class="usp-title brand-font">Cost Efficiency</h4>
+                        <p class="text-adaptive-muted small">
+                            Providing maximum value through strategic procurement and lean construction methodologies without compromising on quality or durability.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding project-stats-section" id="projects">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0 reveal-left">
+                    <div class="section-header">
+                        <h4 style="color: var(--accent);" class="mb-2 brand-font">Portfolio</h4>
+                        <h2 class="text-adaptive">Project Experience</h2>
+                        <div class="line"></div>
+                    </div>
+                    <p class="text-adaptive-muted lead mb-4">
+                        Anvicon Infra leverages the extensive experience of its leadership team, demonstrating proven capability in managing and executing complex, large-scale industrial and logistics projects across India.
+                    </p>
+                    
+                    <div class="row mt-4 mb-4">
+                        <div class="col-6">
+                            <div class="stat-box">
+                                <div class="stat-number">6+</div>
+                                <div class="small text-adaptive-muted text-uppercase">Completed Projects</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-box">
+                                <div class="stat-number">2</div>
+                                <div class="small text-adaptive-muted text-uppercase">Ongoing Projects</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="text-adaptive brand-font mt-4 mb-3">Key Clients & Locations</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2 text-adaptive"><i class="fa-solid fa-location-dot me-2" style="color: var(--primary);"></i> <strong>Leighton Asia:</strong> Hyderabad, Telangana.</li>
+                        <li class="mb-2 text-adaptive"><i class="fa-solid fa-location-dot me-2" style="color: var(--primary);"></i> <strong>Logos Properties:</strong> Bengaluru, Karnataka.</li>
+                        <li class="mb-2 text-adaptive"><i class="fa-solid fa-location-dot me-2" style="color: var(--primary);"></i> <strong>Welspun One:</strong> Key locations in Karnataka.</li>
+                        <li class="mb-2 text-adaptive"><i class="fa-solid fa-location-dot me-2" style="color: var(--primary);"></i> <strong>TAPCO Infra:</strong> Karnataka.</li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-6 reveal-right">
+                    <div class="position-relative h-100">
+                        <img src="https://images.unsplash.com/photo-1590247813693-5541d1c609fd?q=80&w=2000" 
+                             style="width: 100%; height: 600px; object-fit: cover; border-radius: 15px; box-shadow: var(--shadow-card);" 
+                             alt="Industrial Warehouse Project">
+                        
+                        <div class="position-absolute bottom-0 start-0 p-3 w-100 text-center" style="background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
+                            <span class="badge bg-primary">FEATURED</span>
+                            <h4 class="text-white mt-2">Industrial Excellence</h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -587,26 +785,50 @@
             </div>
 
             <div class="row justify-content-center g-4">
-                <div class="col-md-5 reveal-up">
+                <div class="col-md-6 col-lg-3 reveal-up">
                     <div class="leader-card">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974" class="leader-img" alt="Director">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="leader-img" alt="Director Abhilash Chiranjeevi">
                         <div class="leader-info">
                             <h3 class="text-adaptive mb-1">Abhilash Chiranjeevi</h3>
-                            <p style="color: var(--accent);" class="small text-uppercase fw-bold mb-3">Director</p>
-                            <p class="text-adaptive-muted small">Civil Eng. | M. Tech (Structures)</p>
-                            <p class="text-adaptive-muted small">Specialist in structural dynamics and large-scale execution.</p>
+                            <p style="color: var(--accent);" class="small text-uppercase fw-bold mb-3">Director | Structural Expertise</p>
+                            <p class="text-adaptive-muted small">Civil Eng. | M. Tech (Structures) | **10+ years exp**</p>
+                            <p class="text-adaptive-muted small">Specialist in structural dynamics and large-scale execution across various projects.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-5 reveal-up" style="transition-delay: 200ms;">
+                <div class="col-md-6 col-lg-3 reveal-up" style="transition-delay: 100ms;">
                     <div class="leader-card">
-                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974" class="leader-img" alt="Director">
-                        <div class="leader-info">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="leader-img" alt="Director P. Rajesh Kumar">
+                         <div class="leader-info">
                             <h3 class="text-adaptive mb-1">P. Rajesh Kumar</h3>
-                            <p style="color: var(--accent);" class="small text-uppercase fw-bold mb-3">Director</p>
-                            <p class="text-adaptive-muted small">ECE | Masters (Power Systems)</p>
+                            <p style="color: var(--accent);" class="small text-uppercase fw-bold mb-3">Director | Project Management</p>
+                            <p class="text-adaptive-muted small">EEE | Masters (Power Systems) | **7+ years exp**</p>
                             <p class="text-adaptive-muted small">Expert in infrastructure contracts and project lifecycle management.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 reveal-up" style="transition-delay: 200ms;">
+                    <div class="leader-card">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="leader-img" alt="Additional Director Sharmila Naguru">
+                         <div class="leader-info">
+                            <h3 class="text-adaptive mb-1">Sharmila Naguru</h3>
+                            <p style="color: var(--accent);" class="small text-uppercase fw-bold mb-3">Additional Director | Management</p>
+                            <p class="text-adaptive-muted small">MBA | Project Management | **5+ years exp**</p>
+                            <p class="text-adaptive-muted small">Extensive experience in Project Management and Administration, ensuring streamlined operations.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 reveal-up" style="transition-delay: 300ms;">
+                    <div class="leader-card">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="leader-img" alt="Executive Dhushyanath Reddy">
+                         <div class="leader-info">
+                            <h3 class="text-adaptive mb-1">Dhushyanath Reddy</h3>
+                            <p style="color: var(--accent);" class="small text-uppercase fw-bold mb-3">Executive | Execution Expertise</p>
+                            <p class="text-adaptive-muted small">MBA Qualified</p>
+                            <p class="text-adaptive-muted small">Key team member providing crucial on-site execution and operational leadership for project delivery.</p>
                         </div>
                     </div>
                 </div>
@@ -622,21 +844,25 @@
                     <p class="text-adaptive-muted">
                         Building the future with precision, integrity, and innovation. 
                     </p>
+                    <p class="text-adaptive-muted small mt-3">
+                        **Email:** Anviconinfra@gmail.com
+                    </p>
                 </div>
                 <div class="col-lg-2 offset-lg-1 col-6 mb-4">
                     <h5 class="text-adaptive mb-3 brand-font">Company</h5>
                     <div class="footer-links">
                         <a href="#about">About Us</a>
+                        <a href="#vmv">Vision & Mission</a>
+                        <a href="#proposition">Proposition</a>
                         <a href="#leadership">Team</a>
-                        <a href="#usp">Values</a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-6 mb-4">
                     <h5 class="text-adaptive mb-3 brand-font">Verticals</h5>
                     <div class="footer-links">
-                        <a href="#">Logistics</a>
-                        <a href="#">Industrial</a>
-                        <a href="#">Residential</a>
+                        <a href="#verticals">Logistics</a>
+                        <a href="#verticals">Industrial</a>
+                        <a href="#verticals">Residential</a>
                     </div>
                 </div>
                 <div class="col-lg-3 mb-4">
